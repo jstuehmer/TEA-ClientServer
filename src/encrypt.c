@@ -1,3 +1,5 @@
+#include "encrypt.h"
+
 void encrypt(long *v, long *k) {
 
     /* TEA encryption algorithm */

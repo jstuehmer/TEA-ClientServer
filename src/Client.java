@@ -1,11 +1,20 @@
 public class Client {
 
+    private long[] key;
     private String userID;
-    private String password:
+    private String password;
 
     public Client(String userID, String password) {
         this.userID = userID;
         this.password = password;
+    }
+
+    public long[] getKey() {
+        return key;
+    }
+
+    public void setKey(long[] key) {
+        this.key = key;
     }
 
     public String getUserID() {
@@ -23,5 +32,4 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
