@@ -38,6 +38,7 @@ public class ClientView {
         }
     }
 
+
     public static void main(String[] args) {
 
         if (args.length < 1) {
@@ -59,4 +60,5 @@ public class ClientView {
         }
 
     }
+
 }

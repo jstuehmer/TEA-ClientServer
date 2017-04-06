@@ -3,10 +3,12 @@ public class Client {
     private long[] key;
     private String userID;
     private String password;
+    private DH clientDH;
 
     public Client(String userID, String password) {
         this.userID = userID;
         this.password = password;
+        clientDH = new DH();
     }
 
     public long[] getKey() {

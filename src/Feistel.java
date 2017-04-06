@@ -2,10 +2,14 @@ import java.nio.ByteBuffer;
 
 public class Feistel {
 
+    static {
+        System.loadLibrary("feistel");
+    }
+
     private static native void encryptSignal(byte[] signal, long[] key);
     private static native void decryptSignal(byte[] signal, long[] key);
 
-    public static ByteBuffer encrypt(ByteBuffer signal, long[] key) {
+    public static ByteBuffer encryptData(ByteBuffer signal, long[] key) {
 
         ByteBuffer newBuffer = ByteBuffer.allocate(signal.limit() + Integer.BYTES +
         ((2 * Long.BYTES) - ((signal.limit() + Integer.BYTES) % (2 * Long.BYTES))));
@@ -21,7 +25,7 @@ public class Feistel {
         return signal;
     }
 
-    public static ByteBuffer decrypt(ByteBuffer signal, long[] key) {
+    public static ByteBuffer decryptData(ByteBuffer signal, long[] key) {
         ByteBuffer newBuffer = ByteBuffer.allocate(signal.limit());
         newBuffer.put(signal.array());
         decryptSignal(newBuffer.array(), key);

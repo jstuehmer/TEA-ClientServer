@@ -9,6 +9,8 @@ public class Controller {
     protected DataOutputStream out;
     protected Socket socket;
 
+    public Controller() { }
+
     public Controller(Client client) {
         this.client = client;
     }
@@ -30,11 +32,11 @@ public class Controller {
     }
 
     protected ByteBuffer encrypt(ByteBuffer buf) {
-        return Feistel.encrypt(buf, client.getKey());
+        return Feistel.encryptData(buf, client.getKey());
     }
 
     protected ByteBuffer decrypt(ByteBuffer buf) {
-        return Feistel.decrypt(buf, client.getKey());
+        return Feistel.decryptData(buf, client.getKey());
     }
 
     protected void send(ByteBuffer buf) throws IOException {

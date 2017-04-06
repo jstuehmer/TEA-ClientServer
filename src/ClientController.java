@@ -5,6 +5,8 @@ import java.nio.file.*;
 
 public class ClientController extends Controller {
 
+    private Socket socket;
+
     public ClientController(Client client) {
         super(client);
     }
