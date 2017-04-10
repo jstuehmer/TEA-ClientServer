@@ -13,5 +13,8 @@ client: ClientView.class
 server: Server.class
 	java Server
 
+test:
+	java FeistelTest
+
 clean:
 	rm -f *~ *.class *.so

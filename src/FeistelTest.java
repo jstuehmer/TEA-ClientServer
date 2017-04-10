@@ -11,6 +11,7 @@ public class FeistelTest {
 
         ByteBuffer message = ByteBuffer.wrap(data.getBytes());
         message = Feistel.encryptData(message, key);
+        System.out.println(new String(message.array()));
         message = Feistel.decryptData(message, key);
         System.out.println(new String(message.array()));
     }
