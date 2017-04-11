@@ -8,6 +8,7 @@ public class Controller {
     protected DataInputStream in;
     protected DataOutputStream out;
     protected Socket socket;
+    protected int[] key = {0x43215678, 0x12341234, 0x5678568, 0x87651234};
 
     public Controller() { }
 
@@ -32,11 +33,11 @@ public class Controller {
     }
 
     protected ByteBuffer encrypt(ByteBuffer buf) {
-        return Feistel.encryptData(buf, client.getKey());
+        return Feistel.encryptData(buf, key);
     }
 
     protected ByteBuffer decrypt(ByteBuffer buf) {
-        return Feistel.decryptData(buf, client.getKey());
+        return Feistel.decryptData(buf, key);
     }
 
     protected void send(ByteBuffer buf) throws IOException {
@@ -47,7 +48,7 @@ public class Controller {
         // TODO
         ByteBuffer size = ByteBuffer.allocate(Integer.BYTES);
         buf = encrypt(buf);
-        size.putInt(buf.limit() / Long.BYTES);
+        size.putInt(buf.limit() / Integer.BYTES);
         send(encrypt(size));
         send(buf);
     }

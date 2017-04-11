@@ -11,7 +11,7 @@ client: ClientView.class
 	java ClientView 16000
 
 server: Server.class
-	java Server
+	java ServerService 1
 
 test:
 	java FeistelTest

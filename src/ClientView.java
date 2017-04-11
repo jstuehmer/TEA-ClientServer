@@ -26,7 +26,7 @@ public class ClientView {
         while (!line.equals("finished")) {
             line = "";
             while (line.isEmpty()) {
-                line = console.readLine("stuehmer$ ");
+                line = console.readLine("stumpy$ ");
                 controller.requestFile(line);
             }
         }

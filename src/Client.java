@@ -1,6 +1,5 @@
 public class Client {
 
-    private long[] key;
     private String userID;
     private String password;
     private DH clientDH;
@@ -9,14 +8,6 @@ public class Client {
         this.userID = userID;
         this.password = password;
         clientDH = new DH();
-    }
-
-    public long[] getKey() {
-        return key;
-    }
-
-    public void setKey(long[] key) {
-        this.key = key;
     }
 
     public String getUserID() {

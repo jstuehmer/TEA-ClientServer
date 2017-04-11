@@ -25,13 +25,13 @@ public class ClientController extends Controller {
 
     public boolean login() throws IOException {
 
-        ByteBuffer userID = ByteBuffer.wrap(getClient().getUserID().getBytes());
-        send(encrypt(userID));
-        ByteBuffer password = ByteBuffer.wrap(getClient().getPassword().getBytes());
-        send(encrypt(password));
+        ByteBuffer userID1 = ByteBuffer.wrap(getClient().getUserID().getBytes());
+        send(encrypt(userID1));
+        ByteBuffer password1 = ByteBuffer.wrap(getClient().getPassword().getBytes());
+        send(encrypt(password1));
 
-        ByteBuffer response = decrypt(receive(2 * Long.BYTES));
-        if (!new String(response.array()).equals(Server.ACK)) {
+        ByteBuffer response = decrypt(receive(6 * Integer.BYTES));
+        if (!new String(response.array()).equals(Server.ACCESS_GRANTED)) {
             System.err.println("Could not log in. Credentials were wrong.");
             return false;
         }
@@ -43,14 +43,14 @@ public class ClientController extends Controller {
         ByteBuffer fileName = ByteBuffer.wrap(request.getBytes());
         try {
             sendWithSize(fileName);
-            ByteBuffer receiving = receive(2 * Long.BYTES);
+            ByteBuffer receiving = receive(2 * Integer.BYTES);
             receiving = decrypt(receiving);
             if (!new String(receiving.array()).equals(Server.ACK)) {
                 if (request.equals("finished"))
                     return;
-                receiving = receive(2 * Long.BYTES);
+                receiving = receive(2 * Integer.BYTES);
                 receiving = decrypt(receiving);
-                receiving = receive(Long.BYTES * receiving.getInt());
+                receiving = receive(Integer.BYTES * receiving.getInt());
                 receiving = decrypt(receiving);
                 Files.write(Paths.get(new File(request).getName()), receiving.array());
             } else {

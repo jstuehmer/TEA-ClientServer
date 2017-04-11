@@ -10,18 +10,18 @@ extern "C" {
 /*
  * Class:     Feistel
  * Method:    encryptSignal
- * Signature: ([B[J)V
+ * Signature: ([B[I)V
  */
 JNIEXPORT void JNICALL Java_Feistel_encryptSignal
-  (JNIEnv *, jclass, jbyteArray, jlongArray);
+  (JNIEnv *, jclass, jbyteArray, jintArray);
 
 /*
  * Class:     Feistel
  * Method:    decryptSignal
- * Signature: ([B[J)V
+ * Signature: ([B[I)V
  */
 JNIEXPORT void JNICALL Java_Feistel_decryptSignal
-  (JNIEnv *, jclass, jbyteArray, jlongArray);
+  (JNIEnv *, jclass, jbyteArray, jintArray);
 
 #ifdef __cplusplus
 }

@@ -6,13 +6,13 @@ public class Feistel {
         System.loadLibrary("feistel");
     }
 
-    private static native void encryptSignal(byte[] signal, long[] key);
-    private static native void decryptSignal(byte[] signal, long[] key);
+    private static native void encryptSignal(byte[] signal, int[] key);
+    private static native void decryptSignal(byte[] signal, int[] key);
 
-    public static ByteBuffer encryptData(ByteBuffer signal, long[] key) {
+    public static ByteBuffer encryptData(ByteBuffer signal, int[] key) {
 
         ByteBuffer newBuffer = ByteBuffer.allocate(signal.limit() + Integer.BYTES +
-        ((2 * Long.BYTES) - ((signal.limit() + Integer.BYTES) % (2 * Long.BYTES))));
+        ((2 * Integer.BYTES) - ((signal.limit() + Integer.BYTES) % (2 * Integer.BYTES))));
 
         for (int i = 0; i < newBuffer.limit(); i++) {
             newBuffer.put((byte) 0);
@@ -25,7 +25,7 @@ public class Feistel {
         return signal;
     }
 
-    public static ByteBuffer decryptData(ByteBuffer signal, long[] key) {
+    public static ByteBuffer decryptData(ByteBuffer signal, int[] key) {
         ByteBuffer newBuffer = ByteBuffer.allocate(signal.limit());
         newBuffer.put(signal.array());
         decryptSignal(newBuffer.array(), key);
