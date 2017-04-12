@@ -13,7 +13,6 @@ public class ServerService {
 
     private static String USAGE = "<number of threads>";
 
-
     private ExecutorService service;
     private ServerSocket serverSocket;
     private Server server;

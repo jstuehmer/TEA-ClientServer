@@ -39,12 +39,14 @@ public class ServerController extends Controller implements Runnable {
         }
 
         try {
-            ByteBuffer userID2 = decrypt(receive(4 * Integer.BYTES));
+            ByteBuffer userID = decrypt(receive(8 * Integer.BYTES));
+            ByteBuffer password = receive(8 * Integer.BYTES);
+            System.out.println(new String(userID.array()));
+            System.out.println(new String(password.array()));
 
             for (String user: server.getUsers()) {
-                if (user.equals(new String(userID2.array()))) {
-                    ByteBuffer password2 = receive(4 * Integer.BYTES);
-                    if (server.getPassword(user).equals(new String(password2.array()))) {
+                if (user.equals(new String(userID.array()))) {
+                    if (server.getPassword(user).equals(new String(password.array()))) {
                         sendAG();
                         System.out.println("sendAG()");
                         //processCommands();
